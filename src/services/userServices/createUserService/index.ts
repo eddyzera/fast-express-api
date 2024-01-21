@@ -1,5 +1,6 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
 import { ICreateUserServiceRequest, ICreateUserServiceResponse } from './types'
+import { hash } from 'bcryptjs'
 
 export class CreateUserService {
   constructor(private userRepository: IUserRepository) {}
@@ -9,10 +10,11 @@ export class CreateUserService {
     email,
     password,
   }: ICreateUserServiceRequest): Promise<ICreateUserServiceResponse> {
+    const password_hash = await hash(password, 6)
     const user = await this.userRepository.create({
       name,
       email,
-      password_hash: password,
+      password_hash,
     })
 
     return {
