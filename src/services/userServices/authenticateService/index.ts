@@ -18,6 +18,12 @@ export class AuthenticateService {
       throw new Error()
     }
 
+    const doesPasswordMatches = await compare(password, user.password_hash)
+
+    if (!doesPasswordMatches) {
+      throw new Error()
+    }
+
     return {
       user,
     }
