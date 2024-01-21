@@ -38,4 +38,18 @@ describe('AuthenticateService', () => {
       }),
     ).rejects.toBeInstanceOf(Error)
   })
+
+  it('should not be able to authenticate with wrong password', async () => {
+    await userRepository.create({
+      ...userObj,
+      password_hash: await hash(userObj.password, 6),
+    })
+
+    await expect(() =>
+      sut.execute({
+        email: userObj.email,
+        password: '123478',
+      }),
+    ).rejects.toBeInstanceOf(Error)
+  })
 })

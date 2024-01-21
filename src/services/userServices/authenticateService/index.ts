@@ -3,6 +3,7 @@ import {
   IAuthenticateServiceRequest,
   IAuthenticateServiceResponse,
 } from '@/services/userServices/authenticateService/types'
+import { compare } from 'bcryptjs'
 
 export class AuthenticateService {
   constructor(private userRepository: IUserRepository) {}
