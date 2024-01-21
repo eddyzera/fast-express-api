@@ -3,6 +3,7 @@ import { compare } from 'bcryptjs'
 import { CreateUserService } from '@/services/userServices/createUserService'
 import { InMemoryUsersRepository } from '@/test/inMemoryDataBase/inMemoryUserRepository'
 import { userObj } from '@/test/mocks/userObj'
+import { UserAlreadyExists } from '../errors/userAlreadyExistsError'
 
 let userRepository: InMemoryUsersRepository
 let sut: CreateUserService
@@ -32,6 +33,8 @@ describe('CreateUserService', () => {
   it('should not be able to register with same email twice', async () => {
     await sut.execute(userObj)
 
-    await expect(() => sut.execute(userObj)).rejects.toBeInstanceOf(Error)
+    await expect(() => sut.execute(userObj)).rejects.toBeInstanceOf(
+      UserAlreadyExists,
+    )
   })
 })
