@@ -28,4 +28,10 @@ describe('CreateUserService', () => {
 
     expect(isPasswordCorrectlyHashed).toBe(true)
   })
+
+  it('should not be able to register with same email twice', async () => {
+    await sut.execute(userObj)
+
+    await expect(() => sut.execute(userObj)).rejects.toBeInstanceOf(Error)
+  })
 })
