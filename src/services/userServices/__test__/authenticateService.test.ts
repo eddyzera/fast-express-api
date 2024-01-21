@@ -12,7 +12,11 @@ describe('AuthenticateService', () => {
     sut = new AuthenticateService(userRepository)
   })
   it('should be able to authenticate', async () => {
-    const { user } = await sut.execute(userObj)
+    await userRepository.create({ ...userObj, password_hash: userObj.password })
+    const { user } = await sut.execute({
+      email: userObj.email,
+      password: userObj.password,
+    })
 
     expect(user.id).toEqual(expect.any(String))
   })
