@@ -4,6 +4,7 @@ import {
   IAuthenticateServiceResponse,
 } from '@/services/userServices/authenticateService/types'
 import { compare } from 'bcryptjs'
+import { InvalidCredentialsError } from '@/services/userServices/errors/invalidCredentialsError'
 
 export class AuthenticateService {
   constructor(private userRepository: IUserRepository) {}
@@ -15,13 +16,13 @@ export class AuthenticateService {
     const user = await this.userRepository.findByEmail(email)
 
     if (!user) {
-      throw new Error()
+      throw new InvalidCredentialsError()
     }
 
     const doesPasswordMatches = await compare(password, user.password_hash)
 
     if (!doesPasswordMatches) {
-      throw new Error()
+      throw new InvalidCredentialsError()
     }
 
     return {

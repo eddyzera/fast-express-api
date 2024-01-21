@@ -3,6 +3,7 @@ import { AuthenticateService } from '@/services/userServices/authenticateService
 import { InMemoryUsersRepository } from '@/test/inMemoryDataBase/inMemoryUserRepository'
 import { userObj } from '@/test/mocks/userObj'
 import { hash } from 'bcryptjs'
+import { InvalidCredentialsError } from '@/services/userServices/errors/invalidCredentialsError'
 
 let userRepository: InMemoryUsersRepository
 let sut: AuthenticateService
@@ -36,7 +37,7 @@ describe('AuthenticateService', () => {
         email: 'john_doe-invalid@example.com',
         password: userObj.password,
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -50,6 +51,6 @@ describe('AuthenticateService', () => {
         email: userObj.email,
         password: '123478',
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })
