@@ -10,6 +10,10 @@ export class CreateUserService {
     email,
     password,
   }: ICreateUserServiceRequest): Promise<ICreateUserServiceResponse> {
+    const userWithSameEmail = await this.userRepository.findByEmail(email)
+    if (userWithSameEmail) {
+      throw new Error()
+    }
     const password_hash = await hash(password, 6)
     const user = await this.userRepository.create({
       name,
