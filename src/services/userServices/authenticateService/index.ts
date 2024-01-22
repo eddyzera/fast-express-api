@@ -1,10 +1,16 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
-import {
-  IAuthenticateServiceRequest,
-  IAuthenticateServiceResponse,
-} from '@/services/userServices/authenticateService/types'
 import { compare } from 'bcryptjs'
 import { InvalidCredentialsError } from '@/services/errors/invalidCredentialsError'
+import { User } from '@prisma/client'
+
+export interface IAuthenticateServiceRequest {
+  email: string
+  password: string
+}
+
+export interface IAuthenticateServiceResponse {
+  user: User
+}
 
 export class AuthenticateService {
   constructor(private userRepository: IUserRepository) {}

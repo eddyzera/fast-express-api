@@ -1,9 +1,14 @@
 import { IProductRepository } from '@/repository/productRepository/types/IProductRepository'
-import {
-  IGetAllProductServiceRequest,
-  IGetAllProductServiceResponse,
-} from './types'
 import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
+import { Product } from '@prisma/client'
+
+interface IGetAllProductServiceRequest {
+  userId: string
+}
+
+interface IGetAllProductServiceResponse {
+  products: Product[]
+}
 
 export class GetAllProductServices {
   constructor(private productRepository: IProductRepository) {}

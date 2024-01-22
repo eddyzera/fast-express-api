@@ -1,9 +1,13 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
 import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
-import {
-  IGetUserProfileServiceRequest,
-  IGetUserProfileServiceResponse,
-} from './types'
+import { User } from '@prisma/client'
+export interface IGetUserProfileServiceRequest {
+  userId: string
+}
+
+export interface IGetUserProfileServiceResponse {
+  user: User
+}
 
 export class GetUserProfileService {
   constructor(private userRepository: IUserRepository) {}

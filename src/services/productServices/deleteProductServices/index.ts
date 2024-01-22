@@ -1,8 +1,14 @@
+import { Product } from '@prisma/client'
 import { IProductRepository } from '@/repository/productRepository/types/IProductRepository'
-import {
-  IDeleteProductServiceRequest,
-  IDeleteProductServiceResponse,
-} from './types'
+
+interface IDeleteProductServiceRequest {
+  userId: string
+  productId: string
+}
+
+interface IDeleteProductServiceResponse {
+  products: Product[]
+}
 
 export class DeleteProductServices {
   constructor(private productRepository: IProductRepository) {}

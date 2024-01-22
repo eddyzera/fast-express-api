@@ -1,7 +1,17 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
-import { ICreateUserServiceRequest, ICreateUserServiceResponse } from './types'
 import { hash } from 'bcryptjs'
 import { UserAlreadyExists } from '../../errors/userAlreadyExistsError'
+import { User } from '@prisma/client'
+
+export interface ICreateUserServiceRequest {
+  name: string
+  email: string
+  password: string
+}
+
+export interface ICreateUserServiceResponse {
+  user: User
+}
 
 export class CreateUserService {
   constructor(private userRepository: IUserRepository) {}
