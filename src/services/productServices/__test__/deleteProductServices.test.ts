@@ -19,7 +19,6 @@ describe('DeleteProductService', () => {
       })
     }
     const getAllProducts = await productRepository.findMany(productObj.user_id)
-    console.log(`getAllProducts =>`, getAllProducts)
     const { products } = await sut.execute({
       userId: productObj.user_id,
       productId: getAllProducts[1].id,
