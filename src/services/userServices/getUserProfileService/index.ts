@@ -1,5 +1,5 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
-import { ResourceNotFoundError } from '@/services/userServices/errors/resourceNotFoundError'
+import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
 import {
   IGetUserProfileServiceRequest,
   IGetUserProfileServiceResponse,

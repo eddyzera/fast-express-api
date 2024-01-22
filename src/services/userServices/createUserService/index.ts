@@ -1,7 +1,7 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
 import { ICreateUserServiceRequest, ICreateUserServiceResponse } from './types'
 import { hash } from 'bcryptjs'
-import { UserAlreadyExists } from '../errors/userAlreadyExistsError'
+import { UserAlreadyExists } from '../../errors/userAlreadyExistsError'
 
 export class CreateUserService {
   constructor(private userRepository: IUserRepository) {}

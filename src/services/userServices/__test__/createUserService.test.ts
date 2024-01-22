@@ -3,7 +3,7 @@ import { compare } from 'bcryptjs'
 import { CreateUserService } from '@/services/userServices/createUserService'
 import { InMemoryUsersRepository } from '@/test/inMemoryDataBase/inMemoryUserRepository'
 import { userObj } from '@/test/mocks/userObj'
-import { UserAlreadyExists } from '../errors/userAlreadyExistsError'
+import { UserAlreadyExists } from '../../errors/userAlreadyExistsError'
 
 let userRepository: InMemoryUsersRepository
 let sut: CreateUserService

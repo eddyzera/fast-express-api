@@ -23,9 +23,6 @@ export class InMemoryProductRepository implements IProductRepository {
 
   async findMany(userId: string) {
     const product = this.items.filter((it) => it.user_id === userId)
-    if (!product) {
-      return null
-    }
     return product
   }
 }

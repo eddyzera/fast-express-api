@@ -4,7 +4,7 @@ import {
   IAuthenticateServiceResponse,
 } from '@/services/userServices/authenticateService/types'
 import { compare } from 'bcryptjs'
-import { InvalidCredentialsError } from '@/services/userServices/errors/invalidCredentialsError'
+import { InvalidCredentialsError } from '@/services/errors/invalidCredentialsError'
 
 export class AuthenticateService {
   constructor(private userRepository: IUserRepository) {}

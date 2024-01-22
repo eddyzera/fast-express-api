@@ -3,6 +3,7 @@ import {
   IGetAllProductServiceRequest,
   IGetAllProductServiceResponse,
 } from './types'
+import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
 
 export class GetAllProductServices {
   constructor(private productRepository: IProductRepository) {}
@@ -10,14 +11,14 @@ export class GetAllProductServices {
   async execute({
     userId,
   }: IGetAllProductServiceRequest): Promise<IGetAllProductServiceResponse> {
-    const product = await this.productRepository.findMany(userId)
-
-    if (!product) {
-      throw new Error()
+    const products = await this.productRepository.findMany(userId)
+    console.log(`products =>`)
+    if (products.length === 0) {
+      throw new ResourceNotFoundError()
     }
 
     return {
-      product,
+      products,
     }
   }
 }

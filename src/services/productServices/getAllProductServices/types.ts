@@ -5,5 +5,5 @@ export interface IGetAllProductServiceRequest {
 }
 
 export interface IGetAllProductServiceResponse {
-  product: Product[]
+  products: Product[]
 }

@@ -3,7 +3,7 @@ import { AuthenticateService } from '@/services/userServices/authenticateService
 import { InMemoryUsersRepository } from '@/test/inMemoryDataBase/inMemoryUserRepository'
 import { userObj } from '@/test/mocks/userObj'
 import { hash } from 'bcryptjs'
-import { InvalidCredentialsError } from '@/services/userServices/errors/invalidCredentialsError'
+import { InvalidCredentialsError } from '@/services/errors/invalidCredentialsError'
 
 let userRepository: InMemoryUsersRepository
 let sut: AuthenticateService
