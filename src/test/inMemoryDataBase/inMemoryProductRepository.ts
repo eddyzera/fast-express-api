@@ -25,4 +25,13 @@ export class InMemoryProductRepository implements IProductRepository {
     const product = this.items.filter((it) => it.user_id === userId)
     return product
   }
+
+  async delete(userId: string, productId: string) {
+    console.log(userId, productId)
+    const products = this.items.filter(
+      (it) => it.id !== productId && it.user_id === userId,
+    )
+
+    return products
+  }
 }
