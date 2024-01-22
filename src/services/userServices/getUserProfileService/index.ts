@@ -1,4 +1,5 @@
 import { IUserRepository } from '@/repository/userRepository/types/IUserRepository'
+import { ResourceNotFoundError } from '@/services/userServices/errors/resourceNotFoundError'
 import {
   IGetUserProfileServiceRequest,
   IGetUserProfileServiceResponse,
@@ -13,7 +14,7 @@ export class GetUserProfileService {
     const user = await this.userRepository.findById(userId)
 
     if (!user) {
-      throw new Error()
+      throw new ResourceNotFoundError()
     }
 
     return {
