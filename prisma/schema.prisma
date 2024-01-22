@@ -31,11 +31,9 @@ model Product {
   quantity    Int
   created_at  DateTime @default(now())
 
-  User        User      @relation(fields: [user_id], references: [id])
-  user_id     String
-  orders      Order[]
-  Customer    Customer? @relation(fields: [customer_id], references: [id])
-  customer_id String?
+  User    User    @relation(fields: [user_id], references: [id])
+  user_id String
+  orders  Order[] @relation("OdersToProducts")
 
   @@map("products")
 }
@@ -48,7 +46,6 @@ model Customer {
   created_at DateTime  @default(now())
   orders     Order[]
   addresses  Address[]
-  products   Product[]
   User       User      @relation(fields: [user_id], references: [id])
   user_id    String
 
@@ -73,7 +70,7 @@ model Order {
   customer_id String
   User        User      @relation(fields: [user_id], references: [id])
   user_id     String
-  products    Product[]
+  products    Product[] @relation("OdersToProducts")
 
   @@map("orders")
 }
