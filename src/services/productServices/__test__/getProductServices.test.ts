@@ -30,6 +30,6 @@ describe('GetProductService', () => {
       sut.execute({
         productId: 'product-id-error',
       }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })

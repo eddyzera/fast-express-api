@@ -1,4 +1,5 @@
 import { IProductRepository } from '@/repository/productRepository/types/IProductRepository'
+import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
 import { Product } from '@prisma/client'
 
 interface IGetProductServicesResquest {
@@ -17,7 +18,7 @@ export class GetProductServices {
   }: IGetProductServicesResquest): Promise<IGetProductServicesResponse> {
     const product = await this.productRepository.findById(productId)
     if (!product) {
-      throw new Error()
+      throw new ResourceNotFoundError()
     }
     return {
       product,
