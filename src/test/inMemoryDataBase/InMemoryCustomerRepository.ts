@@ -34,4 +34,13 @@ export class InMemoryCustomerRepository implements ICustomerRepository {
 
     return customer
   }
+
+  async findMany(userId: string) {
+    const customers = this.items.filter((it) => it.user_id === userId)
+    if (customers.length === 0) {
+      return null
+    }
+
+    return customers
+  }
 }
