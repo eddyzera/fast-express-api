@@ -1,5 +1,6 @@
 import { Product } from '@prisma/client'
 import { IProductRepository } from '@/repository/productRepository/types/IProductRepository'
+import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
 
 interface IDeleteProductServiceRequest {
   productId: string
@@ -15,8 +16,12 @@ export class DeleteProductServices {
   async execute({
     productId,
   }: IDeleteProductServiceRequest): Promise<IDeleteProductServiceResponse> {
-    const products = await this.productRepository.delete(productId)
-    console.log(`products execute =>`, products)
+    const product = await this.productRepository.findById(productId)
+    if (!product) {
+      throw new ResourceNotFoundError()
+    }
+    const products = await this.productRepository.delete(product.id)
+
     return {
       products,
     }

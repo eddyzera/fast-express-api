@@ -17,7 +17,6 @@ export class GetAllProductServices {
     userId,
   }: IGetAllProductServiceRequest): Promise<IGetAllProductServiceResponse> {
     const products = await this.productRepository.findMany(userId)
-    console.log(`products =>`)
     if (products.length === 0) {
       throw new ResourceNotFoundError()
     }
