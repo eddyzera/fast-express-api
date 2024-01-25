@@ -19,7 +19,6 @@ describe('DeleteCustomerServices', () => {
       })
     }
 
-    console.log(`customerRepository`, customerRepository.items)
     const { customers } = await sut.execute({
       customerId: customerRepository.items[0].id,
     })

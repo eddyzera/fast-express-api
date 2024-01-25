@@ -31,7 +31,6 @@ describe('UpdateProductService', () => {
       data,
     })
 
-    console.log(`productRepository`, productRepository.items)
     expect(productUpdate.name).toEqual('product-name-1-update')
   })
 
