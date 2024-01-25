@@ -43,4 +43,16 @@ export class InMemoryCustomerRepository implements ICustomerRepository {
 
     return customers
   }
+
+  async save(customer: Customer) {
+    const customerIndex = this.items.findIndex(
+      (item) => item.id === customer.id,
+    )
+
+    if (customerIndex >= 0) {
+      this.items[customerIndex] = customer
+    }
+
+    return customer
+  }
 }

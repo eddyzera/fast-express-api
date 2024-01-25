@@ -5,4 +5,5 @@ export interface ICustomerRepository {
   delete(customerId: string): Promise<Customer[]>
   findById(customerId: string): Promise<Customer | null>
   findMany(userId: string): Promise<Customer[] | null>
+  save(product: Customer): Promise<Customer>
 }
