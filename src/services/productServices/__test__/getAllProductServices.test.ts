@@ -8,18 +8,18 @@ let productRepository: InMemoryProductRepository
 let sut: GetAllProductServices
 
 describe('GetAllProductService', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     productRepository = new InMemoryProductRepository()
     sut = new GetAllProductServices(productRepository)
-  })
-  it('should be able to get all products', async () => {
+
     for (let i = 0; i < 10; i++) {
       await productRepository.create({
         ...productObj,
         name: `product-name-${i}`,
       })
     }
-
+  })
+  it('should be able to get all products', async () => {
     await productRepository.create({
       ...productObj,
       name: `product-name-01`,
@@ -39,7 +39,7 @@ describe('GetAllProductService', () => {
 
   it('should not be able to show all product if not exists', async () => {
     await expect(() =>
-      sut.execute({ userId: productObj.user_id }),
+      sut.execute({ userId: 'user_id-03' }),
     ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
