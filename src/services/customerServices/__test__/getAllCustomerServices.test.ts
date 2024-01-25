@@ -8,18 +8,18 @@ let customerRepository: InMemoryCustomerRepository
 let sut: GetAllCustomerServices
 
 describe('GetAllCustomerService', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     customerRepository = new InMemoryCustomerRepository()
     sut = new GetAllCustomerServices(customerRepository)
-  })
-  it('should be able to get all customers', async () => {
+
     for (let i = 0; i < 10; i++) {
       await customerRepository.create({
         ...customerObj,
         name: `product-name-${i}`,
       })
     }
-
+  })
+  it('should be able to get all customers', async () => {
     await customerRepository.create({
       ...customerObj,
       name: `product-name-01`,
@@ -35,5 +35,11 @@ describe('GetAllCustomerService', () => {
     const { customers } = await sut.execute({ userId: 'user_id-02' })
     expect(customers.length).toEqual(2)
     expect(customers[1].user_id).toEqual('user_id-02')
+  })
+
+  it('should not be able to show all customers if not exists', async () => {
+    await expect(() =>
+      sut.execute({ userId: 'user_id-03' }),
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
