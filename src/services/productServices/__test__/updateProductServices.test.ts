@@ -20,7 +20,7 @@ describe('UpdateProductService', () => {
         name: `product-name-${i}`,
       })
     }
-    // 'product-name-1-update'
+
     const data = {
       ...productRepository.items[1],
       name: 'product-name-1-update',
@@ -42,7 +42,7 @@ describe('UpdateProductService', () => {
         name: `product-name-${i}`,
       })
     }
-    // 'product-name-1-update'
+
     const data = {
       ...productRepository.items[1],
       name: 'product-name-1-update',
