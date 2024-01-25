@@ -27,4 +27,10 @@ describe('DeleteCustomerServices', () => {
 
     expect(customers.length).toEqual(9)
   })
+
+  it('should not be able to delete a customer', async () => {
+    expect(
+      sut.execute({ customerId: 'error-customer', userId: 'error-user' }),
+    ).rejects.toBeInstanceOf(Error)
+  })
 })

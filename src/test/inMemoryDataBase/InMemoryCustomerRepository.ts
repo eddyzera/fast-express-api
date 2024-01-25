@@ -25,6 +25,10 @@ export class InMemoryCustomerRepository implements ICustomerRepository {
       (it) => it.id !== customerId && it.user_id === userId,
     )
 
+    if (customers.length === 0) {
+      return null
+    }
+
     return customers
   }
 }
