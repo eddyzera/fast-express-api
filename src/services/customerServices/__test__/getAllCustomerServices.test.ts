@@ -12,7 +12,7 @@ describe('GetAllCustomerService', () => {
     customerRepository = new InMemoryCustomerRepository()
     sut = new GetAllCustomerServices(customerRepository)
   })
-  it('should be able to get all product', async () => {
+  it('should be able to get all customers', async () => {
     for (let i = 0; i < 10; i++) {
       await customerRepository.create({
         ...customerObj,

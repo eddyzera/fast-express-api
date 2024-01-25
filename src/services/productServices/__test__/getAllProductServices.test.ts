@@ -12,15 +12,29 @@ describe('GetAllProductService', () => {
     productRepository = new InMemoryProductRepository()
     sut = new GetAllProductServices(productRepository)
   })
-  it('should be able to get all product', async () => {
+  it('should be able to get all products', async () => {
     for (let i = 0; i < 10; i++) {
       await productRepository.create({
         ...productObj,
         name: `product-name-${i}`,
       })
     }
-    const { products } = await sut.execute({ userId: productObj.user_id })
-    expect(products.length).toEqual(10)
+
+    await productRepository.create({
+      ...productObj,
+      name: `product-name-01`,
+      user_id: 'user_id-02',
+    })
+
+    await productRepository.create({
+      ...productObj,
+      name: `product-name-01`,
+      user_id: 'user_id-02',
+    })
+
+    const { products } = await sut.execute({ userId: 'user_id-02' })
+    expect(products.length).toEqual(2)
+    expect(products[1].user_id).toEqual('user_id-02')
   })
 
   it('should not be able to show all product if not exists', async () => {
