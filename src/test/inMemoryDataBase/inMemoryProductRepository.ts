@@ -41,4 +41,14 @@ export class InMemoryProductRepository implements IProductRepository {
 
     return product
   }
+
+  async save(product: Product) {
+    const productIndex = this.items.findIndex((item) => item.id === product.id)
+
+    if (productIndex >= 0) {
+      this.items[productIndex] = product
+    }
+
+    return product
+  }
 }
