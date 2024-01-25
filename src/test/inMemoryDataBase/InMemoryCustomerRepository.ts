@@ -22,11 +22,6 @@ export class InMemoryCustomerRepository implements ICustomerRepository {
 
   async delete(customerId: string) {
     const customers = this.items.filter((it) => it.id !== customerId)
-
-    if (customers.length === 0) {
-      return null
-    }
-
     return customers
   }
 

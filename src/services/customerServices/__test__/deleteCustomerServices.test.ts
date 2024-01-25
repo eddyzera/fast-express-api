@@ -2,6 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest'
 import { DeleteCustomerServices } from '@/services/customerServices/deleteCustomerServices'
 import { InMemoryCustomerRepository } from '@/test/inMemoryDataBase/InMemoryCustomerRepository'
 import { customerObj } from '@/test/mocks/customerObj'
+import { ResourceNotFoundError } from '@/services/errors/resourceNotFoundError'
 
 let customerRepository: InMemoryCustomerRepository
 let sut: DeleteCustomerServices
@@ -29,6 +30,6 @@ describe('DeleteCustomerServices', () => {
   it('should not be able to delete a customer', async () => {
     expect(
       sut.execute({ customerId: 'error-customer' }),
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })

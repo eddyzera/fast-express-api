@@ -2,6 +2,6 @@ import { Customer, Prisma } from '@prisma/client'
 
 export interface ICustomerRepository {
   create(data: Prisma.CustomerUncheckedCreateInput): Promise<Customer>
-  delete(customerId: string): Promise<Customer[] | null>
+  delete(customerId: string): Promise<Customer[]>
   findById(customerId: string): Promise<Customer | null>
 }
