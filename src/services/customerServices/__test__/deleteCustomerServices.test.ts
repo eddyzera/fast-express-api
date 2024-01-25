@@ -22,7 +22,6 @@ describe('DeleteCustomerServices', () => {
     console.log(`customerRepository`, customerRepository.items)
     const { customers } = await sut.execute({
       customerId: customerRepository.items[0].id,
-      userId: customerObj.user_id,
     })
 
     expect(customers.length).toEqual(9)
@@ -30,7 +29,7 @@ describe('DeleteCustomerServices', () => {
 
   it('should not be able to delete a customer', async () => {
     expect(
-      sut.execute({ customerId: 'error-customer', userId: 'error-user' }),
+      sut.execute({ customerId: 'error-customer' }),
     ).rejects.toBeInstanceOf(Error)
   })
 })

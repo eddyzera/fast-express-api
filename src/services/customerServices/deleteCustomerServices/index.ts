@@ -3,7 +3,6 @@ import { Customer } from '@prisma/client'
 
 interface IDeleteCustomerServiceRequest {
   customerId: string
-  userId: string
 }
 
 interface IDeleteCustomerServiceResponse {
@@ -15,9 +14,8 @@ export class DeleteCustomerServices {
 
   async execute({
     customerId,
-    userId,
   }: IDeleteCustomerServiceRequest): Promise<IDeleteCustomerServiceResponse> {
-    const customers = await this.customerRepository.delete(userId, customerId)
+    const customers = await this.customerRepository.delete(customerId)
     if (!customers) {
       throw new Error()
     }
