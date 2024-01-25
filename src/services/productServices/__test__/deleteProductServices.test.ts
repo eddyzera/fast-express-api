@@ -18,10 +18,8 @@ describe('DeleteProductService', () => {
         name: `product-name-${i}`,
       })
     }
-    const getAllProducts = await productRepository.findMany(productObj.user_id)
     const { products } = await sut.execute({
-      userId: productObj.user_id,
-      productId: getAllProducts[1].id,
+      productId: productRepository.items[2].id,
     })
     expect(products.length).toEqual(9)
   })

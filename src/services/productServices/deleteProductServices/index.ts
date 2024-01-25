@@ -2,7 +2,6 @@ import { Product } from '@prisma/client'
 import { IProductRepository } from '@/repository/productRepository/types/IProductRepository'
 
 interface IDeleteProductServiceRequest {
-  userId: string
   productId: string
 }
 
@@ -14,10 +13,9 @@ export class DeleteProductServices {
   constructor(private productRepository: IProductRepository) {}
 
   async execute({
-    userId,
     productId,
   }: IDeleteProductServiceRequest): Promise<IDeleteProductServiceResponse> {
-    const products = await this.productRepository.delete(userId, productId)
+    const products = await this.productRepository.delete(productId)
     console.log(`products execute =>`, products)
     return {
       products,
